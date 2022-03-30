@@ -13,6 +13,9 @@ add_compile_options(-Wall -Werror -g -Og)
 
 configure_file(version.h.in ../include/${PROJECT_NAME}/version.h)
 
+find_package(Qt6 COMPONENTS Gui Widgets REQUIRED)
+set(CMAKE_AUTOMOC ON)
+
 add_executable(${PROJECT_NAME} ${target_sources})
 
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_11)
@@ -20,5 +23,7 @@ target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_11)
 target_include_directories(${PROJECT_NAME} PUBLIC
                            ${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME}
                           )
+
+target_link_libraries(${PROJECT_NAME} Qt6::Gui Qt6::Widgets)
 
 add_subdirectory(src)

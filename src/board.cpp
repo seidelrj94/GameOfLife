@@ -2,10 +2,18 @@
 
 #include "board.hpp"
 
+Board::Board(void)
+{
+    rows = 0u;
+    columns = 0u;
+    round = 0u;
+}
+
 Board::Board(uint32_t rows, uint32_t columns)
 {
     this->rows = rows;
     this->columns = columns;
+    round = 0u;
     cells.resize(rows*columns);
 }
 
@@ -14,8 +22,20 @@ Board::~Board(void)
     // nothing to do
 }
 
-void Board::init(void)
+uint32_t Board::getRound(void)
 {
+    return round;
+}
+
+void Board::init(uint32_t, uint32_t)
+{
+    // initialize data
+    this->rows = rows;
+    this->columns = columns;
+    round = 0u;
+    cells.resize(rows*columns);
+
+    // initialize cells with random states
     for (uint32_t idx = 0u; idx < cells.size(); idx++)
     {
         Cell::state state = (((rand() % 2) == 0) ? Cell::ALIVE_E : Cell::DEAD_E);
@@ -37,6 +57,9 @@ void Board::update(void)
     {
         cells.at(idx).update();
     }
+
+    // increment round
+    round++;
 }
 
 void Board::print(void)

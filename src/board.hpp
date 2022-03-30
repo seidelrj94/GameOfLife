@@ -9,9 +9,13 @@
 class Board
 {
     public:
+        Board(void);
         Board(uint32_t, uint32_t);
         ~Board(void);
-        void init(void);
+
+        uint32_t getRound(void);
+
+        void init(uint32_t, uint32_t);
         void update(void);
         void print(void);
 
@@ -19,6 +23,7 @@ class Board
         std::vector<Cell> findNeighbors(uint32_t);
         uint32_t rows;
         uint32_t columns;
+        uint32_t round;
         std::vector<Cell> cells;
 };
 
