@@ -13,9 +13,14 @@ class BoardWindow : public QWidget
     Q_OBJECT
     public:
         explicit BoardWindow(QWidget *parent = 0);
-        uint32_t getRound(void);
-    
+
+        Board* getBoard(void);
+        void init(uint32_t, uint32_t, uint32_t);
+        void startTimer(void);
+        void stopTimer(void);
+
     signals:
+        void updated(uint32_t);
 
     private slots:
 
@@ -23,8 +28,10 @@ class BoardWindow : public QWidget
         void paintEvent(QPaintEvent *) override;
 
     private:
-        QTimer* timer;
-        Board board;
+        QTimer* pTimer;
+        Board* pBoard;
+        bool isFirstUpdate;
+        uint32_t updateRateMS;
 };
 
 #endif // __BOARD_WINDOW_H__

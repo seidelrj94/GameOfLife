@@ -16,13 +16,13 @@ class Cell
         ~Cell(void);
         Cell::state getCurrentState(void);
         void setCurrentState(Cell::state);
-        void calculateNextState(std::vector<Cell> &);
+        void calculateNextState(std::vector<Cell>*);
         void update(void);
         void print(void);
 
     private:
-        void aliveNextState(std::vector<Cell> &);
-        void deadNextState(std::vector<Cell> &);
+        void aliveNextState(std::vector<Cell>*);
+        void deadNextState(std::vector<Cell>*);
 
         Cell::state currentState;
         Cell::state nextState;

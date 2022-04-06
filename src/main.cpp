@@ -1,15 +1,12 @@
 #include <ctime>
 
-#include <QGuiApplication>
-#include <QPushButton>
+#include <QApplication>
 
-#include "version.h"
-#include "board.hpp"
 #include "gol_window.hpp"
 
 int main(int argc, char* argv[])
 {
-    QGuiApplication app (argc, argv);
+    QApplication app (argc, argv);
 
     // initialize the random number generator
     srand(time(0));

@@ -5,8 +5,8 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QGroupBox>
-#include <QGridLayout>
 #include <QSpinBox>
+#include <QLineEdit>
 
 #include "board_window.hpp"
 
@@ -20,8 +20,9 @@ class GOL_Window : public QWidget
     signals:
 
     private slots:
-        void initButtonClicked(bool);
-        void startButtonClicked(bool);
+        void initButtonClicked(void);
+        void startButtonClicked(void);
+        void boardUpdated(uint32_t);
     
     private:
         void initBoardGroup(void);
@@ -34,13 +35,18 @@ class GOL_Window : public QWidget
         QGroupBox* pControlGroup;
         QSpinBox* pRowsBox;
         QSpinBox* pColsBox;
+        QLineEdit* pRateLine;
         QLabel* pRowsLabel;
         QLabel* pColsLabel;
+        QLabel* pRateLabel;
         QPushButton* pStartButton;
         QPushButton* pInitButton;
 
         QGroupBox* pStatusGroup;
         QLabel* pRoundLabel;
+        QLineEdit* pRoundLine;
+
+        bool isRunning;
 };
 
 #endif // __GOL_WINDOW_H__

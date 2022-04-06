@@ -19,20 +19,25 @@ Cell::~Cell()
     // nothing to do here
 }
 
+Cell::state Cell::getCurrentState(void)
+{
+    return currentState;
+}
+
 void Cell::setCurrentState(Cell::state state)
 {
     currentState = state;
 }
 
-void Cell::calculateNextState(std::vector<Cell> &neighbors)
+void Cell::calculateNextState(std::vector<Cell>* pNeighbors)
 {
     switch(currentState)
     {
         case Cell::ALIVE_E:
-            aliveNextState(neighbors);
+            aliveNextState(pNeighbors);
             break;
         case Cell::DEAD_E:
-            deadNextState(neighbors);
+            deadNextState(pNeighbors);
             break;
         default:
             break;
@@ -59,13 +64,13 @@ void Cell::print(void)
     }
 }
 
-void Cell::aliveNextState(std::vector<Cell> &neighbors)
+void Cell::aliveNextState(std::vector<Cell>* pNeighbors)
 {
     // count the number of live neighbors
     uint32_t numAliveNeighbors = 0u;
-    for (uint32_t idx = 0u; idx < neighbors.size(); idx++)
+    for (uint32_t idx = 0u; idx < pNeighbors->size(); idx++)
     {
-        if (neighbors.at(idx).currentState == Cell::ALIVE_E)
+        if (pNeighbors->at(idx).currentState == Cell::ALIVE_E)
         {
             numAliveNeighbors++;
         }
@@ -88,13 +93,13 @@ void Cell::aliveNextState(std::vector<Cell> &neighbors)
     }
 }
 
-void Cell::deadNextState(std::vector<Cell> &neighbors)
+void Cell::deadNextState(std::vector<Cell>* pNeighbors)
 {
     // count the number of live neighbors
     uint32_t numAliveNeighbors = 0u;
-    for (uint32_t idx = 0u; idx < neighbors.size(); idx++)
+    for (uint32_t idx = 0u; idx < pNeighbors->size(); idx++)
     {
-        if (neighbors.at(idx).currentState == Cell::ALIVE_E)
+        if (pNeighbors->at(idx).currentState == Cell::ALIVE_E)
         {
             numAliveNeighbors++;
         }
